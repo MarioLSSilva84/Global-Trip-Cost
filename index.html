@@ -152,194 +152,9 @@
         .btn-cookie-accept { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); color: white; }
         .btn-cookie-reject { background: var(--border-light); color: var(--text-dark); }
         .geo-info { font-size: 0.75rem; color: var(--text-muted); padding: 0.5rem 1rem; background: var(--bg-light); border-radius: 0.5rem; margin-top: 1rem; text-align: center; }
-
-        /* PRINT STYLES */
-        @media print {
-            * { margin: 0; padding: 0; }
-            html, body { height: 100%; }
-            body { padding: 0; }
-            .header, .controls, .action-buttons, .ad-zone, .ad-side, .ad-in-content, .cookies-banner, .footer, #inputs-screen { display: none !important; }
-            
-            .main { 
-                max-width: 100%; 
-                padding: 20mm; 
-                margin: 0; 
-                background: white;
-            }
-
-            .calculator-wrapper { 
-                display: block; 
-                page-break-inside: avoid;
-            }
-
-            .results-wrapper {
-                display: block;
-                margin-bottom: 20mm;
-            }
-
-            /* METADE SUPERIOR - DADOS E RESULTADOS */
-            .print-section-top {
-                display: block;
-                height: auto;
-                margin-bottom: 20mm;
-                page-break-inside: avoid;
-            }
-
-            .print-data-box {
-                background: #f8fafc;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                padding: 12mm;
-                margin-bottom: 10mm;
-                font-size: 11pt;
-            }
-
-            .print-data-box h3 {
-                font-size: 12pt;
-                font-weight: 600;
-                color: #0f172a;
-                margin-bottom: 8mm;
-                border-bottom: 2px solid #10b981;
-                padding-bottom: 4mm;
-            }
-
-            .print-data-item {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 5mm;
-                font-size: 10pt;
-                color: #0f172a;
-            }
-
-            .print-data-label {
-                font-weight: 600;
-                color: #64748b;
-            }
-
-            .print-data-value {
-                font-weight: 500;
-                color: #0f172a;
-            }
-
-            .results-card {
-                background: white;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                padding: 12mm;
-                page-break-inside: avoid;
-                box-shadow: none;
-                position: static !important;
-                top: auto !important;
-            }
-
-            .results-card h2 {
-                font-size: 10pt;
-                font-weight: 600;
-                color: #64748b;
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
-                margin-bottom: 8mm;
-                border-bottom: 1px solid #e2e8f0;
-                padding-bottom: 4mm;
-            }
-
-            .result-main {
-                font-size: 28pt;
-                font-weight: 800;
-                color: #10b981;
-                margin-bottom: 12mm;
-                -webkit-background-clip: unset;
-                background: none;
-                -webkit-text-fill-color: unset;
-            }
-
-            .result-item {
-                display: flex;
-                justify-content: space-between;
-                padding: 6mm 0;
-                border-bottom: 1px solid #e2e8f0;
-                font-size: 10pt;
-            }
-
-            .result-item:last-child {
-                border-bottom: none;
-            }
-
-            .result-label {
-                color: #64748b;
-                font-weight: 500;
-            }
-
-            .result-value {
-                color: #0f172a;
-                font-weight: 600;
-            }
-
-            /* METADE INFERIOR - DICAS */
-            .seo-section {
-                background: white;
-                border: none;
-                padding: 0;
-                margin: 0;
-                box-shadow: none;
-                page-break-inside: avoid;
-            }
-
-            .seo-section h3 {
-                font-size: 13pt;
-                font-weight: 700;
-                color: #0f172a;
-                margin-bottom: 10mm;
-                border-bottom: 2px solid #10b981;
-                padding-bottom: 5mm;
-            }
-
-            .seo-tips {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 8mm;
-                page-break-inside: avoid;
-            }
-
-            .tip-card {
-                background: #f8fafc;
-                border-radius: 6px;
-                padding: 10mm;
-                border-left: 3px solid #10b981;
-                page-break-inside: avoid;
-                font-size: 9pt;
-            }
-
-            .tip-card strong {
-                color: #0f172a;
-                font-weight: 600;
-                display: block;
-                margin-bottom: 4mm;
-                font-size: 10pt;
-            }
-
-            .tip-card p {
-                color: #64748b;
-                font-size: 9pt;
-                line-height: 1.4;
-                margin: 0;
-            }
-
-            @page {
-                size: A4;
-                margin: 0;
-                padding: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: white;
-            }
-        }
-
         @media (max-width: 1200px) { .calculator-wrapper { grid-template-columns: 1fr 1fr; } .ad-side { display: none; } }
         @media (max-width: 768px) { .calculator-wrapper { grid-template-columns: 1fr; } .result-main { font-size: 2.5rem; } .action-buttons { flex-direction: column; } .btn-action { width: 100%; justify-content: center; } }
+        @media print { .header, .controls, .action-buttons, .ad-zone, .cookies-banner { display: none; } }
     </style>
 </head>
 <body>
@@ -370,8 +185,8 @@
     <main class="main">
         <div class="ad-zone ad-top">📢 Publicidade (728x90)</div>
 
-        <div class="calculator-wrapper" id="print-container">
-            <div class="inputs-column" id="inputs-screen">
+        <div class="calculator-wrapper">
+            <div class="inputs-column">
                 <h2>🧮 Calculadora</h2>
                 <div class="form-group">
                     <label>📍 Distância</label>
@@ -425,36 +240,6 @@
                 </div>
 
                 <div class="geo-info" id="geo-info" style="display: none;">📍 Localização detectada</div>
-            </div>
-
-            <div class="print-section-top">
-                <div class="print-data-box">
-                    <h3>📊 Dados Introduzidos</h3>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Distância:</span>
-                        <span class="print-data-value" id="print-distance">0 km</span>
-                    </div>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Consumo:</span>
-                        <span class="print-data-value" id="print-consumption">0 L/100km</span>
-                    </div>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Preço Combustível:</span>
-                        <span class="print-data-value" id="print-price">€ 0,00/L</span>
-                    </div>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Passageiros:</span>
-                        <span class="print-data-value" id="print-passengers">1</span>
-                    </div>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Portagens:</span>
-                        <span class="print-data-value" id="print-tolls">€ 0,00</span>
-                    </div>
-                    <div class="print-data-item">
-                        <span class="print-data-label">Ida e Volta:</span>
-                        <span class="print-data-value" id="print-roundtrip">Não</span>
-                    </div>
-                </div>
             </div>
 
             <div class="results-wrapper">
@@ -686,16 +471,6 @@
             }
         };
 
-        // ATUALIZAR DADOS DE IMPRESSÃO
-        function updatePrintData() {
-            document.getElementById('print-distance').textContent = `${elements.distance.value || 0} km`;
-            document.getElementById('print-consumption').textContent = `${elements.consumption.value || 0} L/100km`;
-            document.getElementById('print-price').textContent = `${state.currency} ${(elements.fuelPrice.value || 0).toFixed(2)}/L`;
-            document.getElementById('print-passengers').textContent = elements.passengers.value || 1;
-            document.getElementById('print-tolls').textContent = `${state.currency} ${(elements.tolls.value || 0).toFixed(2)}`;
-            document.getElementById('print-roundtrip').textContent = state.isRoundTrip ? 'Sim' : 'Não';
-        }
-
         // GEOTARGETING
         async function detectLocationAndConfigure() {
             try {
@@ -752,8 +527,6 @@
             elements.distanceDisplay.textContent = `${totalDistance.toFixed(1).replace('.', ',')} ${state.units === 'metric' ? 'km' : 'mi'}`;
             elements.fuelCost.textContent = `${currencySymbol} ${fuelCost.toFixed(2).replace('.', ',')}`;
             elements.totalTollsDisplay.textContent = `${currencySymbol} ${tolls.toFixed(2).replace('.', ',')}`;
-            
-            updatePrintData();
         }
 
         function updateUnitsSuffix() {
@@ -783,11 +556,7 @@
         });
         elements.passengers.addEventListener('input', () => { elements.passengersValue.textContent = elements.passengers.value; calculateCosts(); });
         [elements.distance, elements.consumption, elements.fuelPrice, elements.tolls].forEach(el => el.addEventListener('input', calculateCosts));
-        elements.roundTripToggle.addEventListener('click', () => { 
-            elements.roundTripToggle.classList.toggle('active'); 
-            state.isRoundTrip = elements.roundTripToggle.classList.contains('active'); 
-            calculateCosts(); 
-        });
+        elements.roundTripToggle.addEventListener('click', () => { elements.roundTripToggle.classList.toggle('active'); state.isRoundTrip = elements.roundTripToggle.classList.contains('active'); calculateCosts(); });
 
         elements.btnPrint.addEventListener('click', () => { window.print(); });
         elements.btnShare.addEventListener('click', () => {
@@ -799,13 +568,8 @@
             }
         });
 
-        document.getElementById('btn-cookie-accept').addEventListener('click', () => { 
-            elements.cookiesBanner.classList.add('hidden'); 
-            localStorage.setItem('cookies-accepted', 'true'); 
-        });
-        document.getElementById('btn-cookie-reject').addEventListener('click', () => { 
-            elements.cookiesBanner.classList.add('hidden'); 
-        });
+        document.getElementById('btn-cookie-accept').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); localStorage.setItem('cookies-accepted', 'true'); });
+        document.getElementById('btn-cookie-reject').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); });
 
         if (localStorage.getItem('cookies-accepted')) {
             elements.cookiesBanner.classList.add('hidden');
