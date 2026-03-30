@@ -3,555 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Global Trip Cost Pro - Calculadora Premium de Custos de Viagem. Multi-idioma, PWA instalável, cálculo em tempo real para viagens profissionais.">
+    <meta name="description" content="Global Trip Cost Pro - Calculadora Premium de Custos de Viagem.">
     <meta name="theme-color" content="#10b981">
-    <title>Global Trip Cost Pro - Calculadora de Custos de Viagem</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%2310b981' width='180' height='180'/><text x='50%' y='50%' font-size='100' font-weight='bold' text-anchor='middle' dominant-baseline='middle' fill='white'>🚗</text></svg>">
+    <title>Global Trip Cost Pro</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --primary-start: #10b981;
-            --primary-end: #059669;
-            --border-light: #e2e8f0;
-            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-            --shadow-md: 0 4px 6px rgba(15, 23, 42, 0.1);
-            --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-light: #f8fafc; --bg-white: #ffffff; --text-dark: #0f172a; --text-muted: #64748b;
+            --primary-start: #10b981; --primary-end: #059669; --border-light: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05); --shadow-md: 0 4px 6px rgba(15, 23, 42, 0.1);
+            --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.15); --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark);
+            line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
         }
-
         .header {
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1.5rem 1rem;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: var(--bg-white); border-bottom: 1px solid var(--border-light); padding: 1.5rem 1rem;
+            box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100;
         }
-
         .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between;
+            align-items: center; gap: 2rem; flex-wrap: wrap;
         }
-
         .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700;
             background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            display: flex; align-items: center; gap: 0.5rem;
         }
-
-        .controls {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .select-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .select-group label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
+        .controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .select-group { display: flex; align-items: center; gap: 0.5rem; }
+        .select-group label { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
         select {
-            padding: 0.5rem 0.75rem;
-            border: 1px solid var(--border-light);
-            border-radius: 0.5rem;
-            background: var(--bg-white);
-            color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.875rem;
+            padding: 0.5rem 0.75rem; border: 1px solid var(--border-light); border-radius: 0.5rem;
+            background: var(--bg-white); color: var(--text-dark); font-family: 'Inter', sans-serif;
+            cursor: pointer; transition: var(--transition); font-size: 0.875rem;
         }
-
         select:hover { border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
         select:focus { outline: none; border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
-
-        .main {
-            flex: 1;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem 1rem;
+        .main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 2rem 1rem; }
+        .ad-top { width: 100%; max-width: 728px; height: 90px; margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.875rem; font-weight: 500;
         }
-
-        .ad-top-leaderboard {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
-            border: 2px dashed #cbd5e1;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .calculator-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
+        .calculator-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
         .inputs-column { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-size: 0.875rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 0.5rem; }
+        .input-wrapper { display: flex; align-items: center; gap: 0.5rem; }
         input[type="number"], input[type="text"] {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-light);
-            border-radius: 0.5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--bg-white);
-            color: var(--text-dark);
+            flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--border-light); border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif; font-size: 1rem; transition: var(--transition);
+            background: var(--bg-white); color: var(--text-dark);
         }
-
         input[type="number"]:focus, input[type="text"]:focus {
-            outline: none;
-            border-color: var(--primary-start);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none; border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
-
-        .input-suffix {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .slider-container { display: flex; flex-direction: column; gap: 0.5rem; }
-        .slider-label { display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--text-muted); }
-
+        .input-suffix { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; min-width: 40px; text-align: center; }
         input[type="range"] {
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: var(--border-light);
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
+            width: 100%; height: 6px; border-radius: 3px; background: var(--border-light);
+            outline: none; -webkit-appearance: none; appearance: none;
         }
-
         input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
+            cursor: pointer; box-shadow: var(--shadow-md); transition: var(--transition);
         }
-
         input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            cursor: pointer;
-            border: none;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-        }
-
-        input[type="range"]::-moz-range-thumb:hover { transform: scale(1.2); }
-
-        .toggle-container { display: flex; align-items: center; gap: 1rem; }
-
         .toggle-switch {
-            position: relative;
-            width: 50px;
-            height: 28px;
-            background: var(--border-light);
-            border-radius: 14px;
-            cursor: pointer;
-            transition: var(--transition);
+            position: relative; width: 50px; height: 28px; background: var(--border-light);
+            border-radius: 14px; cursor: pointer; transition: var(--transition);
         }
-
         .toggle-switch.active { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); }
-
         .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: var(--bg-white);
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
+            content: ''; position: absolute; width: 24px; height: 24px; background: var(--bg-white);
+            border-radius: 50%; top: 2px; left: 2px; transition: var(--transition); box-shadow: var(--shadow-sm);
         }
-
         .toggle-switch.active::after { left: 24px; }
-
         .btn-calculate {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-            margin-top: 1rem;
+            padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+            color: white; border: none; border-radius: 0.75rem; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-md); margin-top: 1rem;
             font-family: 'Poppins', sans-serif;
         }
-
-        .btn-calculate:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-calculate:active { transform: translateY(0); }
-
-        .results-column { position: relative; }
-
+        .btn-calculate:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
         .results-card {
-            background: var(--bg-white);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 100px;
-            border: 1px solid var(--border-light);
+            background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md);
+            position: sticky; top: 100px; border: 1px solid var(--border-light);
         }
-
         .results-card h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 600;
+            color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;
         }
-
         .result-main {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 800;
             background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            line-height: 1;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 2rem; line-height: 1;
         }
-
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-
+        .result-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
         .result-item:last-child { border-bottom: none; }
-
-        .result-label {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
+        .result-label { color: var(--text-muted); font-size: 0.875rem; font-weight: 500; }
+        .result-value { color: var(--text-dark); font-weight: 600; font-size: 1rem; }
+        .ad-side { width: 100%; max-width: 300px; height: 300px; background: linear-gradient(135deg, #fce7f3 0%, #fecaca 100%);
+            border: 2px dashed #cbd5e1; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.875rem; font-weight: 500; text-align: center; padding: 1rem; margin-top: 2rem;
         }
-
-        .result-value {
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .ad-sidebar-skyscraper {
-            width: 100%;
-            max-width: 300px;
-            height: 600px;
-            background: linear-gradient(135deg, #fce7f3 0%, #fecaca 100%);
-            border: 2px dashed #cbd5e1;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-
-        .ad-in-content-native {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            border: 2px dashed #cbd5e1;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 1rem;
-            margin: 2rem 0;
-        }
-
-        .seo-section {
-            background: var(--bg-white);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            margin: 3rem 0;
-            border: 1px solid var(--border-light);
-        }
-
-        .seo-section h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .seo-tips {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tip-card {
-            background: var(--bg-light);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            border-left: 4px solid var(--primary-start);
-        }
-
-        .tip-card strong { color: var(--text-dark); font-weight: 600; }
-        .tip-card p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem; }
-
-        .footer {
-            background: var(--bg-white);
-            border-top: 1px solid var(--border-light);
-            padding: 2rem 1rem;
-            margin-top: auto;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .footer-section h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .footer-section a {
-            display: inline-block;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: var(--transition);
-            margin: 0.25rem 0;
-        }
-
-        .footer-section a:hover { color: var(--primary-start); }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-light);
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-top: 2rem;
-        }
-
+        .seo-section { background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md); margin: 3rem 0; border: 1px solid var(--border-light); }
+        .seo-section h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); }
+        .seo-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .tip-card { background: var(--bg-light); border-radius: 0.75rem; padding: 1.5rem; border-left: 4px solid var(--primary-start); }
+        .footer { background: var(--bg-white); border-top: 1px solid var(--border-light); padding: 2rem 1rem; margin-top: auto; }
         .cookies-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-white);
-            border-top: 1px solid var(--border-light);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            z-index: 1000;
-            animation: slideUp 0.3s ease-out;
+            position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-white);
+            border-top: 1px solid var(--border-light); padding: 1.5rem; box-shadow: var(--shadow-lg);
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            flex-wrap: wrap; z-index: 1000; animation: slideUp 0.3s ease-out;
         }
-
         .cookies-banner.hidden { display: none; }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .cookies-text {
-            flex: 1;
-            min-width: 200px;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        .cookies-text a {
-            color: var(--primary-start);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .cookies-text a:hover { text-decoration: underline; }
-
-        .cookies-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-cookie {
-            padding: 0.5rem 1.25rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: var(--transition);
-        }
-
-        .btn-cookie-accept {
-            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            color: white;
-        }
-
-        .btn-cookie-accept:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-cookie-reject {
-            background: var(--border-light);
-            color: var(--text-dark);
-        }
-
-        .btn-cookie-reject:hover { background: #cbd5e1; }
-
-        @media (max-width: 1024px) {
-            .calculator-wrapper { grid-template-columns: 1fr; gap: 1.5rem; }
-            .results-card { position: static; }
-            .ad-sidebar-skyscraper { display: none; }
-        }
-
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 1rem; }
-            .controls { width: 100%; justify-content: space-between; }
-            .result-main { font-size: 2.5rem; }
-            .main { padding: 1rem; }
-            .cookies-banner { flex-direction: column; align-items: flex-start; }
-            .cookies-buttons { width: 100%; }
-            .btn-cookie { flex: 1; text-align: center; }
-            .seo-tips { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .logo { font-size: 1.25rem; }
-            .result-main { font-size: 2rem; }
-            .controls { gap: 0.5rem; }
-            select { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
-            .main { padding: 0.5rem; }
-            .results-card { padding: 1.5rem; }
-            input[type="number"], input[type="text"] { font-size: 16px; }
-            .btn-calculate { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
-        }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .btn-cookie { padding: 0.5rem 1.25rem; border: none; border-radius: 0.5rem; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem; }
+        .btn-cookie-accept { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); color: white; }
+        .btn-cookie-reject { background: var(--border-light); color: var(--text-dark); }
+        @media (max-width: 1024px) { .calculator-wrapper { grid-template-columns: 1fr; } .ad-side { display: none; } }
+        @media (max-width: 768px) { .result-main { font-size: 2.5rem; } }
+        @media (max-width: 480px) { .result-main { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -572,5 +155,188 @@
                     <label for="units-select">📏 Unidades:</label>
                     <select id="units-select">
                         <option value="metric">Métrico (km, L, €)</option>
-                        <option value="imperial">Imperial (mi, gal, $*
-
+                        <option value="imperial">Imperial (mi, gal, $)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="ad-top">📢 Publicidade (728x90)</div>
+
+        <div class="calculator-wrapper">
+            <div class="inputs-column">
+                <h2>🧮 Calculadora</h2>
+                <div class="form-group">
+                    <label>📍 Distância (km)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="distance" placeholder="0" min="0" step="0.1">
+                        <span class="input-suffix" id="suffix-distance">km</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>⛽ Consumo</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="consumption" placeholder="0" min="0" step="0.1">
+                        <span class="input-suffix" id="suffix-consumption">L/100km</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>💰 Preço do Combustível</label>
+                    <div class="input-wrapper">
+                        <span class="input-suffix" id="prefix-currency">€</span>
+                        <input type="number" id="fuel-price" placeholder="0" min="0" step="0.01">
+                        <span class="input-suffix" id="suffix-price">/L</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>👥 Número de Passageiros: <span id="passengers-value">1</span></label>
+                    <input type="range" id="passengers" min="1" max="8" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label>🛣️ Portagens</label>
+                    <div class="input-wrapper">
+                        <span class="input-suffix" id="prefix-currency-tolls">€</span>
+                        <input type="number" id="tolls" placeholder="0" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🔄 Ida e Volta</label>
+                    <div class="toggle-switch" id="round-trip-toggle"></div>
+                </div>
+
+                <button class="btn-calculate" id="btn-calculate">🧮 Calcular</button>
+            </div>
+
+            <div>
+                <div class="results-card">
+                    <h2>💰 Resultado</h2>
+                    <div class="result-main" id="total-cost">€ 0,00</div>
+
+                    <div class="result-item">
+                        <span class="result-label">Por Passageiro</span>
+                        <span class="result-value" id="cost-per-passenger">€ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Combustível</span>
+                        <span class="result-value" id="fuel-consumed">0 L</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Distância</span>
+                        <span class="result-value" id="distance-display">0 km</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Custo Combustível</span>
+                        <span class="result-value" id="fuel-cost">€ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Portagens</span>
+                        <span class="result-value" id="total-tolls-display">€ 0,00</span>
+                    </div>
+                </div>
+                <div class="ad-side">📢 Publicidade (300x300)</div>
+            </div>
+        </div>
+
+        <section class="seo-section">
+            <h3>💡 Dicas</h3>
+            <div class="seo-tips" id="seo-tips-container"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p style="text-align: center; color: var(--text-muted);">© 2026 Global Trip Cost Pro</p>
+    </footer>
+
+    <div class="cookies-banner" id="cookies-banner">
+        <div style="flex: 1;">Usamos cookies para melhorar sua experiência.</div>
+        <button class="btn-cookie btn-cookie-reject" id="btn-cookie-reject">Rejeitar</button>
+        <button class="btn-cookie btn-cookie-accept" id="btn-cookie-accept">Aceitar</button>
+    </div>
+
+    <script>
+        const i18n = {
+            pt: { seoTips: [{ title: 'Manutenção', description: 'Mantenha seu carro bem conservado.' }, { title: 'Velocidade', description: 'Dirija com velocidade constante.' }] },
+            en: { seoTips: [{ title: 'Maintenance', description: 'Keep your car well maintained.' }, { title: 'Speed', description: 'Drive at constant speed.' }] },
+            es: { seoTips: [{ title: 'Mantenimiento', description: 'Mantenga su coche bien mantenido.' }, { title: 'Velocidad', description: 'Conduzca a velocidad constante.' }] },
+            fr: { seoTips: [{ title: 'Entretien', description: 'Entretenez bien votre voiture.' }, { title: 'Vitesse', description: 'Conduisez à vitesse constante.' }] }
+        };
+
+        const state = { language: 'pt', units: 'metric', currency: '€', distance: 0, consumption: 0, fuelPrice: 0, passengers: 1, tolls: 0, isRoundTrip: false };
+        const elements = {
+            languageSelect: document.getElementById('language-select'),
+            unitsSelect: document.getElementById('units-select'),
+            distance: document.getElementById('distance'),
+            consumption: document.getElementById('consumption'),
+            fuelPrice: document.getElementById('fuel-price'),
+            passengers: document.getElementById('passengers'),
+            tolls: document.getElementById('tolls'),
+            roundTripToggle: document.getElementById('round-trip-toggle'),
+            btnCalculate: document.getElementById('btn-calculate'),
+            totalCost: document.getElementById('total-cost'),
+            costPerPassenger: document.getElementById('cost-per-passenger'),
+            fuelConsumed: document.getElementById('fuel-consumed'),
+            distanceDisplay: document.getElementById('distance-display'),
+            fuelCost: document.getElementById('fuel-cost'),
+            totalTollsDisplay: document.getElementById('total-tolls-display'),
+            passengersValue: document.getElementById('passengers-value'),
+            cookiesBanner: document.getElementById('cookies-banner'),
+            seoTipsContainer: document.getElementById('seo-tips-container')
+        };
+
+        function calculateCosts() {
+            const distance = parseFloat(elements.distance.value) || 0;
+            const consumption = parseFloat(elements.consumption.value) || 0;
+            const fuelPrice = parseFloat(elements.fuelPrice.value) || 0;
+            const passengers = parseInt(elements.passengers.value) || 1;
+            const tolls = parseFloat(elements.tolls.value) || 0;
+            const totalDistance = state.isRoundTrip ? distance * 2 : distance;
+
+            let fuelConsumedValue = 0, fuelCost = 0;
+            if (state.units === 'metric') {
+                fuelConsumedValue = (totalDistance / 100) * consumption;
+                fuelCost = fuelConsumedValue * fuelPrice;
+            } else {
+                fuelConsumedValue = totalDistance / consumption;
+                fuelCost = fuelConsumedValue * fuelPrice;
+            }
+
+            const totalCostValue = fuelCost + tolls;
+            const costPerPassenger = passengers > 0 ? totalCostValue / passengers : 0;
+            const currencySymbol = state.currency || '€';
+
+            elements.totalCost.textContent = `${currencySymbol} ${totalCostValue.toFixed(2).replace('.', ',')}`;
+            elements.costPerPassenger.textContent = `${currencySymbol} ${costPerPassenger.toFixed(2).replace('.', ',')}`;
+            elements.fuelConsumed.textContent = `${fuelConsumedValue.toFixed(2).replace('.', ',')} ${state.units === 'metric' ? 'L' : 'gal'}`;
+            elements.distanceDisplay.textContent = `${totalDistance.toFixed(1).replace('.', ',')} ${state.units === 'metric' ? 'km' : 'mi'}`;
+            elements.fuelCost.textContent = `${currencySymbol} ${fuelCost.toFixed(2).replace('.', ',')}`;
+            elements.totalTollsDisplay.textContent = `${currencySymbol} ${tolls.toFixed(2).replace('.', ',')}`;
+        }
+
+        elements.languageSelect.addEventListener('change', (e) => { state.language = e.target.value; });
+        elements.unitsSelect.addEventListener('change', (e) => { state.units = e.target.value; calculateCosts(); });
+        elements.passengers.addEventListener('input', () => { elements.passengersValue.textContent = elements.passengers.value; calculateCosts(); });
+        [elements.distance, elements.consumption, elements.fuelPrice, elements.tolls].forEach(el => el.addEventListener('input', calculateCosts));
+        elements.roundTripToggle.addEventListener('click', () => { elements.roundTripToggle.classList.toggle('active'); state.isRoundTrip = elements.roundTripToggle.classList.contains('active'); calculateCosts(); });
+        elements.btnCalculate.addEventListener('click', calculateCosts);
+
+        document.getElementById('btn-cookie-accept').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); });
+        document.getElementById('btn-cookie-reject').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); });
+
+        const tips = i18n[state.language]?.seoTips || i18n['en'].seoTips;
+        elements.seoTipsContainer.innerHTML = tips.map(tip => `<div class="tip-card"><strong>${tip.title}</strong><p>${tip.description}</p></div>`).join('');
+
+        calculateCosts();
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+        }
+    </script>
+</body>
+</html>
