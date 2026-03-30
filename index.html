@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Global Trip Cost Pro - Calculadora Premium de Custos de Viagem.">
+    <meta name="description" content="Global Trip Cost Pro - Calculadora Premium de Custos de Viagem com Geotargeting.">
     <meta name="theme-color" content="#10b981">
     <title>Global Trip Cost Pro</title>
     <link rel="manifest" href="manifest.json">
@@ -21,7 +21,7 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark);
-            line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+            line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 100px;
         }
         .header {
             background: var(--bg-white); border-bottom: 1px solid var(--border-light); padding: 1.5rem 1rem;
@@ -46,22 +46,20 @@
             cursor: pointer; transition: var(--transition); font-size: 0.875rem;
         }
         select:hover { border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
-        select:focus { outline: none; border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
         .main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 2rem 1rem; }
-        .ad-top { width: 100%; max-width: 728px; height: 90px; margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border: 2px dashed #cbd5e1;
+        .ad-zone { width: 100%; background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border: 2px dashed #cbd5e1;
             border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
             color: var(--text-muted); font-size: 0.875rem; font-weight: 500;
         }
+        .ad-top { max-width: 728px; height: 90px; margin: 0 auto 2rem; }
         .calculator-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
         .inputs-column { display: flex; flex-direction: column; gap: 1.5rem; }
         .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .form-group label { font-size: 0.875rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 0.5rem; }
+        .form-group label { font-size: 0.875rem; font-weight: 600; color: var(--text-dark); }
         .input-wrapper { display: flex; align-items: center; gap: 0.5rem; }
         input[type="number"], input[type="text"] {
             flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--border-light); border-radius: 0.5rem;
-            font-family: 'Inter', sans-serif; font-size: 1rem; transition: var(--transition);
-            background: var(--bg-white); color: var(--text-dark);
+            font-family: 'Inter', sans-serif; font-size: 1rem; background: var(--bg-white); color: var(--text-dark);
         }
         input[type="number"]:focus, input[type="text"]:focus {
             outline: none; border-color: var(--primary-start); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
@@ -74,27 +72,26 @@
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            cursor: pointer; box-shadow: var(--shadow-md); transition: var(--transition);
+            cursor: pointer; box-shadow: var(--shadow-md);
         }
-        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
         .slider-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; }
         .toggle-switch {
             position: relative; width: 50px; height: 28px; background: var(--border-light);
-            border-radius: 14px; cursor: pointer; transition: var(--transition);
+            border-radius: 14px; cursor: pointer;
         }
         .toggle-switch.active { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); }
         .toggle-switch::after {
             content: ''; position: absolute; width: 24px; height: 24px; background: var(--bg-white);
-            border-radius: 50%; top: 2px; left: 2px; transition: var(--transition); box-shadow: var(--shadow-sm);
+            border-radius: 50%; top: 2px; left: 2px; transition: 0.3s; box-shadow: var(--shadow-sm);
         }
         .toggle-switch.active::after { left: 24px; }
-        .btn-calculate {
-            padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
-            color: white; border: none; border-radius: 0.75rem; font-size: 1rem; font-weight: 600;
-            cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-md); margin-top: 1rem;
-            font-family: 'Poppins', sans-serif;
+        .btn-action {
+            padding: 0.75rem 1.25rem; border: 1px solid var(--border-light); background: var(--bg-white);
+            color: var(--text-dark); border-radius: 0.5rem; cursor: pointer; font-family: 'Inter', sans-serif;
+            font-weight: 600; font-size: 0.875rem; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem;
         }
-        .btn-calculate:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-action:hover { background: var(--primary-start); color: white; border-color: var(--primary-start); }
+        .action-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
         .results-card {
             background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md);
             position: sticky; top: 100px; border: 1px solid var(--border-light);
@@ -113,297 +110,13 @@
         .result-item:last-child { border-bottom: none; }
         .result-label { color: var(--text-muted); font-size: 0.875rem; font-weight: 500; }
         .result-value { color: var(--text-dark); font-weight: 600; font-size: 1rem; }
-        .ad-side { width: 100%; max-width: 300px; height: 300px; background: linear-gradient(135deg, #fce7f3 0%, #fecaca 100%);
+        .ad-side { max-width: 300px; height: 600px; background: linear-gradient(135deg, #fce7f3 0%, #fecaca 100%);
             border: 2px dashed #cbd5e1; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
             color: var(--text-muted); font-size: 0.875rem; font-weight: 500; text-align: center; padding: 1rem; margin-top: 2rem;
         }
+        .ad-in-content { max-width: 100%; height: 250px; margin: 2rem 0; }
         .seo-section { background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md); margin: 3rem 0; border: 1px solid var(--border-light); }
         .seo-section h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); }
         .seo-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        .tip-card { background: var(--bg-light); border-radius: 0.75rem; padding: 1.5rem; border-left: 4px solid var(--primary-start); }
-        .tip-card strong { color: var(--text-dark); font-weight: 600; display: block; margin-bottom: 0.5rem; }
-        .tip-card p { color: var(--text-muted); font-size: 0.875rem; }
-        .footer { background: var(--bg-white); border-top: 1px solid var(--border-light); padding: 2rem 1rem; margin-top: auto; }
-        .cookies-banner {
-            position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-white);
-            border-top: 1px solid var(--border-light); padding: 1.5rem; box-shadow: var(--shadow-lg);
-            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-            flex-wrap: wrap; z-index: 1000; animation: slideUp 0.3s ease-out;
-        }
-        .cookies-banner.hidden { display: none; }
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .btn-cookie { padding: 0.5rem 1.25rem; border: none; border-radius: 0.5rem; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem; }
-        .btn-cookie-accept { background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%); color: white; }
-        .btn-cookie-reject { background: var(--border-light); color: var(--text-dark); }
-        @media (max-width: 1024px) { .calculator-wrapper { grid-template-columns: 1fr; } .ad-side { display: none; } }
-        @media (max-width: 768px) { .result-main { font-size: 2.5rem; } }
-        @media (max-width: 480px) { .result-main { font-size: 2rem; } }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <div class="header-container">
-            <div class="logo">🚗 Global Trip Cost Pro</div>
-            <div class="controls">
-                <div class="select-group">
-                    <label for="language-select">🌐 Idioma:</label>
-                    <select id="language-select">
-                        <option value="pt">🇵🇹 Português</option>
-                        <option value="en">🇬🇧 English</option>
-                        <option value="es">🇪🇸 Español</option>
-                        <option value="fr">🇫🇷 Français</option>
-                    </select>
-                </div>
-                <div class="select-group">
-                    <label for="units-select">📏 Unidades:</label>
-                    <select id="units-select">
-                        <option value="metric">Métrico (km, L, €)</option>
-                        <option value="imperial">Imperial (mi, gal, $)</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="main">
-        <div class="ad-top">📢 Publicidade (728x90)</div>
-
-        <div class="calculator-wrapper">
-            <div class="inputs-column">
-                <h2>🧮 Calculadora</h2>
-                <div class="form-group">
-                    <label>📍 Distância</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="distance" placeholder="100" min="0" step="1" value="100">
-                        <span class="input-suffix" id="suffix-distance">km</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>⛽ Consumo</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="consumption" placeholder="7" min="0.1" step="0.1" value="7">
-                        <span class="input-suffix" id="suffix-consumption">L/100km</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>💰 Preço do Combustível</label>
-                    <div class="input-wrapper">
-                        <span class="input-suffix" id="prefix-currency">€</span>
-                        <input type="number" id="fuel-price" placeholder="1.50" min="0" step="0.01" value="1.50">
-                        <span class="input-suffix" id="suffix-price">/L</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>👥 Passageiros: <strong id="passengers-value">1</strong></label>
-                    <input type="range" id="passengers" min="1" max="8" value="1">
-                    <div class="slider-label"><span>1</span><span>8</span></div>
-                </div>
-
-                <div class="form-group">
-                    <label>🛣️ Portagens</label>
-                    <div class="input-wrapper">
-                        <span class="input-suffix" id="prefix-currency-tolls">€</span>
-                        <input type="number" id="tolls" placeholder="0" min="0" step="0.01" value="0">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>🔄 Ida e Volta</span>
-                        <div class="toggle-switch" id="round-trip-toggle"></div>
-                    </label>
-                </div>
-
-                <button class="btn-calculate" id="btn-calculate">🧮 Calcular</button>
-            </div>
-
-            <div>
-                <div class="results-card">
-                    <h2>💰 Resultado</h2>
-                    <div class="result-main" id="total-cost">€ 0,00</div>
-
-                    <div class="result-item">
-                        <span class="result-label">Por Passageiro</span>
-                        <span class="result-value" id="cost-per-passenger">€ 0,00</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Combustível</span>
-                        <span class="result-value" id="fuel-consumed">0 L</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Distância</span>
-                        <span class="result-value" id="distance-display">0 km</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Custo Combustível</span>
-                        <span class="result-value" id="fuel-cost">€ 0,00</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Portagens</span>
-                        <span class="result-value" id="total-tolls-display">€ 0,00</span>
-                    </div>
-                </div>
-                <div class="ad-side">📢 Publicidade (300x300)</div>
-            </div>
-        </div>
-
-        <section class="seo-section">
-            <h3>💡 Dicas de Condução Eficiente</h3>
-            <div class="seo-tips" id="seo-tips-container"></div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p style="text-align: center; color: var(--text-muted);">© 2026 Global Trip Cost Pro | <a href="#" style="color: var(--primary-start); text-decoration: none;">Privacidade</a> | <a href="#" style="color: var(--primary-start); text-decoration: none;">Termos</a></p>
-    </footer>
-
-    <div class="cookies-banner" id="cookies-banner">
-        <div style="flex: 1;">🍪 Usamos cookies para melhorar sua experiência. Ao continuar, você aceita nossa Política de Privacidade.</div>
-        <button class="btn-cookie btn-cookie-reject" id="btn-cookie-reject">Rejeitar</button>
-        <button class="btn-cookie btn-cookie-accept" id="btn-cookie-accept">Aceitar</button>
-    </div>
-
-    <script>
-        const i18n = {
-            pt: {
-                seoTips: [
-                    { title: '🔧 Manutenção Regular', description: 'Verifique a pressão dos pneus mensalmente. Pneus com baixa pressão aumentam o consumo em 3-5%.' },
-                    { title: '⚡ Condução Suave', description: 'Evite acelerações bruscas. Acelere gradualmente e mantenha velocidade constante na estrada.' },
-                    { title: '🗺️ Planifique Rotas', description: 'Usar GPS para rotas eficientes economiza 10-15% de combustível comparado a desvios.' },
-                    { title: '📦 Reduza Peso', description: 'Cada 100kg extras aumenta o consumo em 2-3%. Remova malas e itens desnecessários.' },
-                    { title: '❄️ Ar Condicionado', description: 'Ligar AC aumenta o consumo em 10-15%. Use em velocidades baixas ou ventilação natural.' },
-                    { title: '⏱️ Velocidade Constante', description: 'Manter 80-100 km/h em estrada usa 20% menos combustível que variar entre 60-120 km/h.' }
-                ]
-            },
-            en: {
-                seoTips: [
-                    { title: '🔧 Regular Maintenance', description: 'Check tire pressure monthly. Low pressure increases fuel consumption by 3-5%.' },
-                    { title: '⚡ Smooth Driving', description: 'Avoid sudden accelerations. Accelerate gradually and maintain constant highway speed.' },
-                    { title: '🗺️ Plan Routes', description: 'Using GPS for efficient routes saves 10-15% fuel compared to detours.' },
-                    { title: '📦 Reduce Weight', description: 'Every 100kg extra increases consumption by 2-3%. Remove luggage and unnecessary items.' },
-                    { title: '❄️ Air Conditioning', description: 'Using AC increases consumption by 10-15%. Use at low speeds or natural ventilation.' },
-                    { title: '⏱️ Constant Speed', description: 'Maintaining 80-100 km/h on highway uses 20% less fuel than varying 60-120 km/h.' }
-                ]
-            },
-            es: {
-                seoTips: [
-                    { title: '🔧 Mantenimiento Regular', description: 'Verifique la presión de los neumáticos mensualmente. Aumenta el consumo en 3-5%.' },
-                    { title: '⚡ Conducción Suave', description: 'Evite aceleraciones bruscas. Acelere gradualmente y mantenga velocidad constante.' },
-                    { title: '🗺️ Planifique Rutas', description: 'Usar GPS ahorra 10-15% de combustible comparado con desvíos.' },
-                    { title: '📦 Reduzca Peso', description: 'Cada 100kg extra aumenta el consumo en 2-3%. Retire equipaje innecesario.' },
-                    { title: '❄️ Aire Acondicionado', description: 'El AC aumenta el consumo en 10-15%. Use a velocidades bajas o ventilación natural.' },
-                    { title: '⏱️ Velocidad Constante', description: 'Mantener 80-100 km/h usa 20% menos combustible que variar 60-120 km/h.' }
-                ]
-            },
-            fr: {
-                seoTips: [
-                    { title: '🔧 Entretien Régulier', description: 'Vérifiez la pression des pneus mensuellement. Augmente la consommation de 3-5%.' },
-                    { title: '⚡ Conduite Douce', description: 'Évitez les accélérations brusques. Accélérez progressivement et maintenez une vitesse constante.' },
-                    { title: '🗺️ Planifiez les Itinéraires', description: 'Utiliser le GPS épargne 10-15% de carburant par rapport aux détours.' },
-                    { title: '📦 Réduisez le Poids', description: 'Chaque 100kg supplémentaires augmente la consommation de 2-3%. Retirez les bagages.' },
-                    { title: '❄️ Climatisation', description: 'La clim augmente la consommation de 10-15%. Utilisez à basse vitesse ou ventilation naturelle.' },
-                    { title: '⏱️ Vitesse Constante', description: 'Maintenir 80-100 km/h utilise 20% moins de carburant que de varier 60-120 km/h.' }
-                ]
-            }
-        };
-
-        const state = { language: 'pt', units: 'metric', currency: '€', isRoundTrip: false };
-        const elements = {
-            languageSelect: document.getElementById('language-select'),
-            unitsSelect: document.getElementById('units-select'),
-            distance: document.getElementById('distance'),
-            consumption: document.getElementById('consumption'),
-            fuelPrice: document.getElementById('fuel-price'),
-            passengers: document.getElementById('passengers'),
-            tolls: document.getElementById('tolls'),
-            roundTripToggle: document.getElementById('round-trip-toggle'),
-            btnCalculate: document.getElementById('btn-calculate'),
-            totalCost: document.getElementById('total-cost'),
-            costPerPassenger: document.getElementById('cost-per-passenger'),
-            fuelConsumed: document.getElementById('fuel-consumed'),
-            distanceDisplay: document.getElementById('distance-display'),
-            fuelCost: document.getElementById('fuel-cost'),
-            totalTollsDisplay: document.getElementById('total-tolls-display'),
-            passengersValue: document.getElementById('passengers-value'),
-            cookiesBanner: document.getElementById('cookies-banner'),
-            seoTipsContainer: document.getElementById('seo-tips-container'),
-            suffixDistance: document.getElementById('suffix-distance'),
-            suffixConsumption: document.getElementById('suffix-consumption'),
-            prefixCurrency: document.getElementById('prefix-currency'),
-            prefixCurrencyTolls: document.getElementById('prefix-currency-tolls')
-        };
-
-        function calculateCosts() {
-            const distance = parseFloat(elements.distance.value) || 0;
-            const consumption = parseFloat(elements.consumption.value) || 0.1;
-            const fuelPrice = parseFloat(elements.fuelPrice.value) || 0;
-            const passengers = parseInt(elements.passengers.value) || 1;
-            const tolls = parseFloat(elements.tolls.value) || 0;
-            const totalDistance = state.isRoundTrip ? distance * 2 : distance;
-
-            let fuelConsumedValue = 0, fuelCost = 0;
-            if (state.units === 'metric') {
-                fuelConsumedValue = (totalDistance / 100) * consumption;
-                fuelCost = fuelConsumedValue * fuelPrice;
-            } else {
-                fuelConsumedValue = totalDistance > 0 && consumption > 0 ? totalDistance / consumption : 0;
-                fuelCost = fuelConsumedValue * fuelPrice;
-            }
-
-            const totalCostValue = fuelCost + tolls;
-            const costPerPassenger = passengers > 0 ? totalCostValue / passengers : 0;
-            const currencySymbol = state.currency || '€';
-
-            elements.totalCost.textContent = `${currencySymbol} ${totalCostValue.toFixed(2).replace('.', ',')}`;
-            elements.costPerPassenger.textContent = `${currencySymbol} ${costPerPassenger.toFixed(2).replace('.', ',')}`;
-            elements.fuelConsumed.textContent = `${fuelConsumedValue.toFixed(2).replace('.', ',')} ${state.units === 'metric' ? 'L' : 'gal'}`;
-            elements.distanceDisplay.textContent = `${totalDistance.toFixed(1).replace('.', ',')} ${state.units === 'metric' ? 'km' : 'mi'}`;
-            elements.fuelCost.textContent = `${currencySymbol} ${fuelCost.toFixed(2).replace('.', ',')}`;
-            elements.totalTollsDisplay.textContent = `${currencySymbol} ${tolls.toFixed(2).replace('.', ',')}`;
-        }
-
-        function updateUILanguage() {
-            const tips = i18n[state.language]?.seoTips || i18n['en'].seoTips;
-            elements.seoTipsContainer.innerHTML = tips.map(tip => `<div class="tip-card"><strong>${tip.title}</strong><p>${tip.description}</p></div>`).join('');
-        }
-
-        elements.languageSelect.addEventListener('change', (e) => { state.language = e.target.value; updateUILanguage(); });
-        elements.unitsSelect.addEventListener('change', (e) => {
-            state.units = e.target.value;
-            if (e.target.value === 'imperial') {
-                elements.suffixDistance.textContent = 'mi';
-                elements.suffixConsumption.textContent = 'MPG';
-                state.currency = '$';
-            } else {
-                elements.suffixDistance.textContent = 'km';
-                elements.suffixConsumption.textContent = 'L/100km';
-                state.currency = '€';
-            }
-            elements.prefixCurrency.textContent = state.currency;
-            elements.prefixCurrencyTolls.textContent = state.currency;
-            calculateCosts();
-        });
-        elements.passengers.addEventListener('input', () => { elements.passengersValue.textContent = elements.passengers.value; calculateCosts(); });
-        [elements.distance, elements.consumption, elements.fuelPrice, elements.tolls].forEach(el => el.addEventListener('input', calculateCosts));
-        elements.roundTripToggle.addEventListener('click', () => { elements.roundTripToggle.classList.toggle('active'); state.isRoundTrip = elements.roundTripToggle.classList.contains('active'); calculateCosts(); });
-        elements.btnCalculate.addEventListener('click', calculateCosts);
-
-        document.getElementById('btn-cookie-accept').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); localStorage.setItem('cookies-accepted', 'true'); });
-        document.getElementById('btn-cookie-reject').addEventListener('click', () => { elements.cookiesBanner.classList.add('hidden'); });
-
-        if (localStorage.getItem('cookies-accepted')) {
-            elements.cookiesBanner.classList.add('hidden');
-        }
-
-        updateUILanguage();
-        calculateCosts();
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-        }
-    </script>
-</body>
-</html>
+        .tip-card { background: var(--bg-light); border-radius: 0*
+
