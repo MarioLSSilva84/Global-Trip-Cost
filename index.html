@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Global Trip Cost Pro - Calculadora Premium de Custos de Viagem com Geotargeting.">
+    <meta name="description" content="Global Trip Cost Pro - Calculadora gratuita de custos de viagem de carro. Calcula combustível, portagens e custo por passageiro com deteção automática de país e moeda.">
+    <meta name="keywords" content="calculadora custo viagem, custo combustível, portagens, viagem carro, economizar combustível, trip cost calculator, fuel cost calculator">
+    <meta name="author" content="Global Trip Cost Pro">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#10b981">
     <meta name="google-adsense-account" content="ca-pub-9407177229006909">
-    <title>Global Trip Cost Pro</title>
+    <meta property="og:title" content="Global Trip Cost Pro - Calculadora de Custos de Viagem">
+    <meta property="og:description" content="Calcule gratuitamente o custo total da sua viagem de carro: combustível, portagens e divisão por passageiros. Com deteção automática de país e idioma.">
+    <meta property="og:type" content="website">
+    <title>Global Trip Cost Pro - Calculadora de Custos de Viagem Gratuita</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,10 +123,28 @@
         }
         .ad-in-content { max-width: 100%; height: 250px; margin: 2rem 0; background: transparent; display: flex; align-items: center; justify-content: center; }
         .seo-section { background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md); margin: 3rem 0; border: 1px solid var(--border-light); }
-        .seo-section h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); }
+        .seo-section h2 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-dark); }
+        .seo-section p { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7; }
         .seo-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
         .tip-card { background: var(--bg-light); border-radius: 0.75rem; padding: 1.5rem; border-left: 4px solid var(--primary-start); }
         .tip-card strong { color: var(--text-dark); font-weight: 600; display: block; margin-bottom: 0.5rem; }
+        .tip-card p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+        .faq-section { background: var(--bg-white); border-radius: 1rem; padding: 2rem; box-shadow: var(--shadow-md); margin: 3rem 0; border: 1px solid var(--border-light); }
+        .faq-section h2 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-dark); }
+        .faq-section > p { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7; }
+        .faq-item { border-bottom: 1px solid var(--border-light); padding: 1.25rem 0; }
+        .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .faq-question { font-weight: 600; color: var(--text-dark); font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+        .faq-answer { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; padding-left: 1.5rem; }
+        .about-section { background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-radius: 1rem; padding: 2rem; margin: 3rem 0; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .about-section h2 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-dark); }
+        .about-section p { color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+        .about-section p:last-child { margin-bottom: 0; }
+        .about-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .about-feature { background: var(--bg-white); border-radius: 0.75rem; padding: 1.25rem; box-shadow: var(--shadow-sm); text-align: center; }
+        .about-feature .feature-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+        .about-feature strong { color: var(--text-dark); font-weight: 600; display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }
+        .about-feature span { color: var(--text-muted); font-size: 0.8rem; }
         .footer { background: var(--bg-white); border-top: 1px solid var(--border-light); padding: 2rem 1rem; margin-top: auto; }
         .footer-content { text-align: center; color: var(--text-muted); }
         .footer-links { margin-top: 1rem; }
@@ -156,6 +180,30 @@
         @media (max-width: 768px) { .calculator-wrapper { grid-template-columns: 1fr; } .result-main { font-size: 2.5rem; } .action-buttons { flex-direction: column; } .btn-action { width: 100%; justify-content: center; } }
         @media print { .header, .controls, .action-buttons, .ad-zone, .cookies-banner { display: none; } }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Global Trip Cost Pro",
+        "description": "Calculadora gratuita de custos de viagem de carro. Calcula combustível, portagens e custo por passageiro com deteção automática de país e moeda.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "Cálculo de custos de combustível",
+            "Inclusão de portagens",
+            "Divisão por passageiros",
+            "Deteção automática de país e moeda",
+            "Suporte a sistema métrico e imperial",
+            "Multi-idioma: Português, Inglês, Espanhol, Francês",
+            "Progressive Web App (PWA)"
+        ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -285,8 +333,119 @@
         </div>
 
         <section class="seo-section">
-            <h3>💡 Dicas de Condução Eficiente</h3>
-            <div class="seo-tips" id="seo-tips-container"></div>
+            <h2>💡 Dicas de Condução Eficiente</h2>
+            <p>Reduzir o consumo de combustível na estrada não é apenas uma questão de economia — é também uma prática mais sustentável e responsável. Com as dicas certas, pode poupar até 20% no custo da sua viagem sem abdicar do conforto.</p>
+            <div class="seo-tips" id="seo-tips-container">
+                <div class="tip-card">
+                    <strong>🔧 Manutenção Regular</strong>
+                    <p>Verifique a pressão dos pneus mensalmente. Pneus com baixa pressão aumentam o consumo em 3-5% e reduzem a vida útil dos pneus. Um motor bem afinado também pode poupar até 4% em combustível.</p>
+                </div>
+                <div class="tip-card">
+                    <strong>⚡ Condução Suave</strong>
+                    <p>Evite acelerações e travagens bruscas. Acelere gradualmente e antecipe as travagens deixando o carro perder velocidade naturalmente. Esta técnica pode reduzir o consumo em 15-30% em ambiente urbano.</p>
+                </div>
+                <div class="tip-card">
+                    <strong>🗺️ Planifique as Rotas</strong>
+                    <p>Usar GPS para rotas eficientes economiza 10-15% de combustível comparado a desvios e engarrafamentos. Prefira autoestradas em viagens longas e evite horas de ponta em cidade.</p>
+                </div>
+                <div class="tip-card">
+                    <strong>📦 Reduza o Peso</strong>
+                    <p>Cada 100kg extras aumenta o consumo em 2-3%. Remova malas e itens desnecessários do porta-bagagens. Evite também o rack de teto quando não necessário — aumenta a resistência aerodinâmica.</p>
+                </div>
+                <div class="tip-card">
+                    <strong>❄️ Ar Condicionado</strong>
+                    <p>Ligar o AC aumenta o consumo em 10-15%. Abaixo de 80 km/h, abrir as janelas é mais eficiente. Em autoestrada, o AC é melhor pois janelas abertas aumentam a resistência aerodinâmica.</p>
+                </div>
+                <div class="tip-card">
+                    <strong>⏱️ Velocidade Constante</strong>
+                    <p>Manter 80-100 km/h em estrada usa 20% menos combustível do que variar entre 60-120 km/h. Use o cruise control em autoestrada para manter velocidade constante e maximizar a eficiência.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+            <h2>❓ Perguntas Frequentes (FAQ)</h2>
+            <p>Respostas às perguntas mais comuns sobre o cálculo de custos de viagem e como utilizar a nossa calculadora de forma eficaz.</p>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ Como calcular o custo de combustível de uma viagem?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">Para calcular o custo de combustível, precisa de saber: (1) a distância total da viagem em quilómetros, (2) o consumo médio do seu veículo em litros por 100km, e (3) o preço atual do combustível por litro. A fórmula é: <strong>Custo = (Distância ÷ 100) × Consumo × Preço por litro</strong>. A nossa calculadora faz este cálculo automaticamente em tempo real.</span>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ Como saber o consumo médio do meu carro?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">O consumo médio está indicado no manual do proprietário do veículo ou na ficha técnica. Normalmente é expresso em L/100km (Europa) ou mpg — milhas por galão (EUA/Reino Unido). Para um cálculo mais preciso, pode encher o depósito, percorrer 500km, encher novamente e calcular: litros usados ÷ km percorridos × 100. Carros modernos também mostram o consumo médio no painel de instrumentos.</span>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ Vale a pena partilhar a viagem para reduzir custos?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">Absolutamente! Partilhar a viagem com mais passageiros é uma das formas mais eficazes de reduzir o custo por pessoa. Por exemplo, uma viagem de €60 dividida por 4 passageiros fica apenas €15 por pessoa — 75% de poupança face a viajar sozinho. Use a nossa calculadora para ver o custo por passageiro em tempo real e decidir se compensa partilhar versus outros meios de transporte.</span>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ Como reduzir o custo de portagens numa viagem?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">Para reduzir custos em portagens pode: usar via verde ou transponder para evitar filas e beneficiar de descontos em alguns países; planear rotas alternativas sem portagem (embora possam demorar mais); verificar passes mensais ou anuais se viajar frequentemente no mesmo troço; e considerar que rotas sem portagem podem aumentar o consumo de combustível em trajetos com mais paragens.</span>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ A calculadora funciona para outros países além de Portugal?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">Sim! A Global Trip Cost Pro deteta automaticamente o seu país por IP e ajusta a moeda (€, $, £, R$, CHF) e as unidades de medida (sistema métrico ou imperial). Suporta utilizadores de Portugal, Espanha, França, Alemanha, Itália, Brasil, EUA, Reino Unido, Canadá, Suíça e muitos outros países. Pode também alterar manualmente o idioma e as unidades no menu superior.</span>
+                </div>
+            </div>
+
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">❓ É possível calcular uma viagem de ida e volta?</div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <span itemprop="text">Sim! Basta ativar o botão "Ida e Volta" na calculadora. Quando ativado, a distância inserida é automaticamente duplicada no cálculo, dando-lhe o custo total de ida e regresso. Isto é especialmente útil para viagens de fim de semana ou quando quer comparar o custo total de conduzir versus outros meios de transporte como o comboio ou avião.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>ℹ️ Sobre a Global Trip Cost Pro</h2>
+            <p>A <strong>Global Trip Cost Pro</strong> é uma calculadora de custos de viagem gratuita, desenvolvida para ajudar condutores a planear as suas viagens de forma económica e informada. Com tecnologia de geotargeting, a calculadora adapta-se automaticamente ao país do utilizador, apresentando a moeda local e as unidades de medida corretas.</p>
+            <p>Todos os cálculos são realizados diretamente no seu browser, sem necessidade de criar conta ou partilhar dados pessoais. A ferramenta é especialmente útil para calcular e comparar o custo de viagens longas, verificar se compensa partilhar o carro com outros passageiros, ou avaliar se é mais económico conduzir versus outros meios de transporte.</p>
+            <div class="about-features">
+                <div class="about-feature">
+                    <span class="feature-icon">⛽</span>
+                    <strong>Combustível</strong>
+                    <span>Cálculo preciso por L/100km ou mpg</span>
+                </div>
+                <div class="about-feature">
+                    <span class="feature-icon">🛣️</span>
+                    <strong>Portagens</strong>
+                    <span>Inclui portagens no custo total</span>
+                </div>
+                <div class="about-feature">
+                    <span class="feature-icon">👥</span>
+                    <strong>Passageiros</strong>
+                    <span>Divide o custo por todos os ocupantes</span>
+                </div>
+                <div class="about-feature">
+                    <span class="feature-icon">🌍</span>
+                    <strong>Multi-país</strong>
+                    <span>Deteção automática de país e moeda</span>
+                </div>
+                <div class="about-feature">
+                    <span class="feature-icon">📱</span>
+                    <strong>PWA</strong>
+                    <span>Instalável como app no telemóvel</span>
+                </div>
+                <div class="about-feature">
+                    <span class="feature-icon">🔒</span>
+                    <strong>Privacidade</strong>
+                    <span>Sem registo, dados ficam no seu browser</span>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -386,42 +545,42 @@
         const i18n = {
             pt: {
                 seoTips: [
-                    { title: '🔧 Manutenção Regular', description: 'Verifique a pressão dos pneus mensalmente. Pneus com baixa pressão aumentam o consumo em 3-5%.' },
-                    { title: '⚡ Condução Suave', description: 'Evite acelerações bruscas. Acelere gradualmente e mantenha velocidade constante na estrada.' },
-                    { title: '🗺️ Planifique Rotas', description: 'Usar GPS para rotas eficientes economiza 10-15% de combustível comparado a desvios.' },
-                    { title: '📦 Reduza Peso', description: 'Cada 100kg extras aumenta o consumo em 2-3%. Remova malas e itens desnecessários.' },
-                    { title: '❄️ Ar Condicionado', description: 'Ligar AC aumenta o consumo em 10-15%. Use em velocidades baixas ou ventilação natural.' },
-                    { title: '⏱️ Velocidade Constante', description: 'Manter 80-100 km/h em estrada usa 20% menos combustível que variar entre 60-120 km/h.' }
+                    { title: '🔧 Manutenção Regular', description: 'Verifique a pressão dos pneus mensalmente. Pneus com baixa pressão aumentam o consumo em 3-5% e reduzem a vida útil dos pneus. Um motor bem afinado também pode poupar até 4% em combustível.' },
+                    { title: '⚡ Condução Suave', description: 'Evite acelerações e travagens bruscas. Acelere gradualmente e antecipe as travagens deixando o carro perder velocidade naturalmente. Esta técnica pode reduzir o consumo em 15-30% em ambiente urbano.' },
+                    { title: '🗺️ Planifique Rotas', description: 'Usar GPS para rotas eficientes economiza 10-15% de combustível comparado a desvios e engarrafamentos. Prefira autoestradas em viagens longas e evite horas de ponta em cidade.' },
+                    { title: '📦 Reduza Peso', description: 'Cada 100kg extras aumenta o consumo em 2-3%. Remova malas e itens desnecessários do porta-bagagens. Evite também o rack de teto quando não necessário — aumenta a resistência aerodinâmica.' },
+                    { title: '❄️ Ar Condicionado', description: 'Ligar o AC aumenta o consumo em 10-15%. Abaixo de 80 km/h, abrir as janelas é mais eficiente. Em autoestrada, o AC é melhor pois janelas abertas aumentam a resistência aerodinâmica.' },
+                    { title: '⏱️ Velocidade Constante', description: 'Manter 80-100 km/h em estrada usa 20% menos combustível do que variar entre 60-120 km/h. Use o cruise control em autoestrada para manter velocidade constante e maximizar a eficiência.' }
                 ]
             },
             en: {
                 seoTips: [
-                    { title: '🔧 Regular Maintenance', description: 'Check tire pressure monthly. Low pressure increases fuel consumption by 3-5%.' },
-                    { title: '⚡ Smooth Driving', description: 'Avoid sudden accelerations. Accelerate gradually and maintain constant highway speed.' },
-                    { title: '🗺️ Plan Routes', description: 'Using GPS for efficient routes saves 10-15% fuel compared to detours.' },
-                    { title: '📦 Reduce Weight', description: 'Every 100kg extra increases consumption by 2-3%. Remove luggage and unnecessary items.' },
-                    { title: '❄️ Air Conditioning', description: 'Using AC increases consumption by 10-15%. Use at low speeds or natural ventilation.' },
-                    { title: '⏱️ Constant Speed', description: 'Maintaining 80-100 km/h on highway uses 20% less fuel than varying 60-120 km/h.' }
+                    { title: '🔧 Regular Maintenance', description: 'Check tire pressure monthly. Low pressure increases fuel consumption by 3-5% and reduces tire lifespan. A well-tuned engine can also save up to 4% in fuel costs.' },
+                    { title: '⚡ Smooth Driving', description: 'Avoid sudden accelerations and braking. Accelerate gradually and anticipate stops by letting the car slow down naturally. This technique can reduce consumption by 15-30% in urban environments.' },
+                    { title: '🗺️ Plan Routes', description: 'Using GPS for efficient routes saves 10-15% fuel compared to detours and traffic jams. Prefer highways for long trips and avoid rush hours in cities.' },
+                    { title: '📦 Reduce Weight', description: 'Every 100kg extra increases consumption by 2-3%. Remove unnecessary luggage and items from the trunk. Also avoid roof racks when not needed — they increase aerodynamic drag.' },
+                    { title: '❄️ Air Conditioning', description: 'Using AC increases consumption by 10-15%. Below 80 km/h, opening windows is more efficient. On highways, AC is better since open windows increase aerodynamic resistance.' },
+                    { title: '⏱️ Constant Speed', description: 'Maintaining 80-100 km/h on highway uses 20% less fuel than varying between 60-120 km/h. Use cruise control on highways to maintain constant speed and maximize efficiency.' }
                 ]
             },
             es: {
                 seoTips: [
-                    { title: '🔧 Mantenimiento Regular', description: 'Verifique la presión de los neumáticos mensualmente. Aumenta el consumo en 3-5%.' },
-                    { title: '⚡ Conducción Suave', description: 'Evite aceleraciones bruscas. Acelere gradualmente y mantenga velocidad constante.' },
-                    { title: '🗺️ Planifique Rutas', description: 'Usar GPS ahorra 10-15% de combustible comparado con desvíos.' },
-                    { title: '📦 Reduzca Peso', description: 'Cada 100kg extra aumenta el consumo en 2-3%. Retire equipaje innecesario.' },
-                    { title: '❄️ Aire Acondicionado', description: 'El AC aumenta el consumo en 10-15%. Use a velocidades bajas o ventilación natural.' },
-                    { title: '⏱️ Velocidad Constante', description: 'Mantener 80-100 km/h usa 20% menos combustible que variar 60-120 km/h.' }
+                    { title: '🔧 Mantenimiento Regular', description: 'Verifique la presión de los neumáticos mensualmente. La baja presión aumenta el consumo en 3-5% y reduce la vida útil de los neumáticos. Un motor bien afinado también puede ahorrar hasta un 4% en combustible.' },
+                    { title: '⚡ Conducción Suave', description: 'Evite aceleraciones y frenadas bruscas. Acelere gradualmente y anticipe las paradas dejando que el coche pierda velocidad de forma natural. Esta técnica puede reducir el consumo en 15-30% en entornos urbanos.' },
+                    { title: '🗺️ Planifique Rutas', description: 'Usar GPS para rutas eficientes ahorra 10-15% de combustible frente a desvíos y atascos. Prefiera autopistas en viajes largos y evite las horas punta en ciudad.' },
+                    { title: '📦 Reduzca Peso', description: 'Cada 100kg extra aumenta el consumo en 2-3%. Retire equipaje innecesario del maletero. Evite también la baca cuando no sea necesaria, pues aumenta la resistencia aerodinámica.' },
+                    { title: '❄️ Aire Acondicionado', description: 'El AC aumenta el consumo en 10-15%. Por debajo de 80 km/h, abrir las ventanas es más eficiente. En autopista, el AC es mejor ya que las ventanas abiertas aumentan la resistencia aerodinámica.' },
+                    { title: '⏱️ Velocidad Constante', description: 'Mantener 80-100 km/h en carretera usa 20% menos combustible que variar entre 60-120 km/h. Use el control de crucero en autopista para mantener velocidad constante y maximizar la eficiencia.' }
                 ]
             },
             fr: {
                 seoTips: [
-                    { title: '🔧 Entretien Régulier', description: 'Vérifiez la pression des pneus mensuellement. Augmente la consommation de 3-5%.' },
-                    { title: '⚡ Conduite Douce', description: 'Évitez les accélérations brusques. Accélérez progressivement et maintenez une vitesse constante.' },
-                    { title: '🗺️ Planifiez les Itinéraires', description: 'Utiliser le GPS épargne 10-15% de carburant par rapport aux détours.' },
-                    { title: '📦 Réduisez le Poids', description: 'Chaque 100kg supplémentaires augmente la consommation de 2-3%. Retirez les bagages.' },
-                    { title: '❄️ Climatisation', description: 'La clim augmente la consommation de 10-15%. Utilisez à basse vitesse ou ventilation naturelle.' },
-                    { title: '⏱️ Vitesse Constante', description: 'Maintenir 80-100 km/h utilise 20% moins de carburant que de varier 60-120 km/h.' }
+                    { title: '🔧 Entretien Régulier', description: 'Vérifiez la pression des pneus mensuellement. Une pression basse augmente la consommation de 3-5% et réduit leur durée de vie. Un moteur bien réglé peut également économiser jusqu\'à 4% de carburant.' },
+                    { title: '⚡ Conduite Douce', description: 'Évitez les accélérations et freinages brusques. Accélérez progressivement et anticipez les arrêts en laissant la voiture ralentir naturellement. Cette technique peut réduire la consommation de 15-30% en ville.' },
+                    { title: '🗺️ Planifiez les Itinéraires', description: 'Utiliser le GPS pour des itinéraires efficaces épargne 10-15% de carburant par rapport aux détours et embouteillages. Préférez les autoroutes pour les longs trajets et évitez les heures de pointe en ville.' },
+                    { title: '📦 Réduisez le Poids', description: 'Chaque 100kg supplémentaires augmente la consommation de 2-3%. Retirez les bagages inutiles du coffre. Évitez aussi la galerie de toit lorsqu\'elle n\'est pas nécessaire car elle augmente la résistance aérodynamique.' },
+                    { title: '❄️ Climatisation', description: 'La clim augmente la consommation de 10-15%. En dessous de 80 km/h, ouvrir les fenêtres est plus efficace. Sur autoroute, la clim est préférable car les fenêtres ouvertes augmentent la résistance aérodynamique.' },
+                    { title: '⏱️ Vitesse Constante', description: 'Maintenir 80-100 km/h utilise 20% moins de carburant que de varier entre 60-120 km/h. Utilisez le régulateur de vitesse sur autoroute pour maintenir une vitesse constante et maximiser l\'efficacité.' }
                 ]
             }
         };
